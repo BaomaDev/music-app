@@ -1,0 +1,68 @@
+# ==========================================
+# macOS System Files
+# ==========================================
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# ==========================================
+# Xcode User Data & Cache
+# ==========================================
+## User settings (Triggers massive git noise on window resize/breakpoints)
+xcuserdata/
+
+## Core Data / Xcode Build Output
+DerivedData/
+build/
+ModuleCache/
+*.moved-aside
+
+## Architecture / Crash logs
+*.crash
+*.ipa
+*.dSYM
+*.dSYM.zip
+*.hmap
+
+# ==========================================
+# Playgrounds & Workspaces
+# ==========================================
+timeline.xctimeline
+playground.xcworkspace
+
+# ==========================================
+# Swift Package Manager (SPM)
+# ==========================================
+# Xcode automatically tracks Package.resolved. If you want SPM versions 
+# locked across your team, leave the line below commented out.
+# Package.resolved
+.swiftpm/
+.build/
+
+# ==========================================
+# CocoaPods (If applicable)
+# ==========================================
+# CocoaPods recommends keeping the Pods directory out of git. 
+# Your team will need to run 'pod install' after cloning.
+Pods/
+
+# ==========================================
+# Carthage (If applicable)
+# ==========================================
+Carthage/Build/
+
+# ==========================================
+# Fastlane (If applicable)
+# ==========================================
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/**/*.png
+fastlane/test_output
