@@ -49,38 +49,38 @@ final class SongService {
     }
 }
 
-//final class AudioPlayerService {
-//    static let shared = AudioPlayerService()
-//
-//    private(set) var currentSong: Song?
-//    private(set) var isPlaying = false
-//    private var player: AVPlayer?
-//    var onStateChange: (() -> Void)?
-//    
-//    //bikin queue
-//    //index it
-//    //ambil currently
-//
-//    func play(_ song: Song) {
-//        guard let url = song.previewUrl else { return }
-//        
-//        player = AVPlayer(url: url)
-//        currentSong = song
-//        player?.play()
-//        
-////        if currentSong?.previewUrl != song.previewUrl {
-////            player = AVPlayer(url: song.previewUrl)
-////            currentSong = song
-////        }
-//        isPlaying = true
-//        onStateChange?()
-//    }
-//
-//    func toggle() {
-//        guard let player else { return }
-//        if isPlaying { player.pause() } else { player.play() }
-//        isPlaying.toggle()
-//        onStateChange?()
-//    }
-//    //tambahin buat si next, previous, and autoplay
-//}
+final class AudioPlayerService {
+    static let shared = AudioPlayerService()
+
+    private(set) var currentSong: Song?
+    private(set) var isPlaying = false
+    private var player: AVPlayer?
+    var onStateChange: (() -> Void)?
+    
+    //bikin queue
+    //index it
+    //ambil currently
+
+    func play(_ song: Song) {
+        guard let url = song.previewUrl else { return }
+        
+        player = AVPlayer(url: url)
+        currentSong = song
+        player?.play()
+        
+//        if currentSong?.previewUrl != song.previewUrl {
+//            player = AVPlayer(url: song.previewUrl)
+//            currentSong = song
+//        }
+        isPlaying = true
+        onStateChange?()
+    }
+
+    func toggle() {
+        guard let player else { return }
+        if isPlaying { player.pause() } else { player.play() }
+        isPlaying.toggle()
+        onStateChange?()
+    }
+    //tambahin buat si next, previous, and autoplay
+}

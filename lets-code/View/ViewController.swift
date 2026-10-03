@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     private let viewModel = SongViewModel()
     private let player = AudioPlayerService.shared
     private let searchController = UISearchController(searchResultsController: nil)
-//    private let miniPlayer = MiniPlayerView()
+    private let miniPlayer = MiniPlayerView()
     private var collectionView: UICollectionView!
     private let messageLabel = UILabel()
 
@@ -23,7 +23,7 @@ class ViewController: UIViewController {
         configureView()
         configureSearch()
         configureCollectionView()
-//        configureMiniPlayer()
+        configureMiniPlayer()
         configureMessageLabel()
         bindViewModel()
         viewModel.search(query: "indonesia")
@@ -64,15 +64,15 @@ class ViewController: UIViewController {
         ])
     }
     
-//    private func configureMiniPlayer() {
-//        view.addSubview(miniPlayer)
-//        NSLayoutConstraint.activate([
-//            miniPlayer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-//            miniPlayer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-//            miniPlayer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8),
-//            miniPlayer.heightAnchor.constraint(equalToConstant: 64)
-//        ])
-//    }
+    private func configureMiniPlayer() {
+        view.addSubview(miniPlayer)
+        NSLayoutConstraint.activate([
+            miniPlayer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            miniPlayer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            miniPlayer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8),
+            miniPlayer.heightAnchor.constraint(equalToConstant: 64)
+        ])
+    }
 
     private func configureMessageLabel() {
         messageLabel.textAlignment = .center
