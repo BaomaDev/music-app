@@ -58,14 +58,21 @@ final class AudioPlayerService {
     var onStateChange: (() -> Void)?
     
     //bikin queue
+    private var queue: [Song] = []
     //index it
+    private var currentIndex: Int?
     //ambil currently
+    private var endObvserver: NSObjectProtocol?
 
-    func play(_ song: Song) {
-        guard let url = song.previewUrl else { return }
+    func play(_ song: Song, in songs: [Song]) {
+//        guard let url = song.previewUrl else { return }
+        guard let idx = songs.firstIndex(where: { $0.previewUrl == song.previewUrl }) else { return }
         
-        player = AVPlayer(url: url)
-        currentSong = song
+//        player = AVPlayer(url: url)
+//        currentSong = song
+        
+        queue = songs
+//        start(at: idx)
         player?.play()
         
 //        if currentSong?.previewUrl != song.previewUrl {
