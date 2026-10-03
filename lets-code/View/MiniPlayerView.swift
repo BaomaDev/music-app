@@ -12,6 +12,8 @@ final class MiniPlayerView: UIView {
     private let player = AudioPlayerService.shared
     private let titleLabel = UILabel()
     private let button = UIButton(type: .system)
+    private let buttonNext = UIButton(type: .system)
+    private let buttonPrevious = UIButton(type: .system)
 
     init() {
         super.init(frame: .zero)
@@ -53,8 +55,10 @@ final class MiniPlayerView: UIView {
             return
         }
         isHidden = false
-        titleLabel.text = episode.title
+        titleLabel.text = episode.trackName
         button.setImage(UIImage(systemName: player.isPlaying ? "pause.fill" : "play.fill"), for: .normal)
+        buttonNext.setImage(UIImage(systemName: "forward.end.alt.fill"), for: .normal)
+        buttonPrevious.setImage(UIImage(systemName: "rewind.end.alt.fill"), for: .normal)
     }
 
     @objc private func toggle() { player.toggle() }

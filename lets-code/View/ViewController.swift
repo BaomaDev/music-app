@@ -137,7 +137,10 @@ extension ViewController: UICollectionViewDataSource {
             for: indexPath
         ) as! PodcastCell
         
-        cell.configure(with: viewModel.songs[indexPath.item])
+        let song = viewModel.songs[indexPath.item]
+        cell.configure(with: song, isCurrent: player.currentSong == song, isPlaying: player.isPlaying)
+        
+//        cell.configure(with: viewModel.songs[indexPath.item], isCurrent: false, isPlaying: true)
         return cell
     }
 }

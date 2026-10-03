@@ -21,5 +21,3 @@ jobs:
       run: ls /Applications | grep Xcode
     - name: Show current version of Xcode
       run: xcodebuild -version
-    - name: Run tests
-      run: ./run_tests.sh

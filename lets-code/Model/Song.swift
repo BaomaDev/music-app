@@ -11,7 +11,7 @@ struct SongSearchResponse: Decodable {
     let results: [Song]
 }
 
-struct Song: Decodable {
+struct Song: Decodable, Equatable {
     let trackId: Int?
     let artistName: String?
     let trackName: String?
