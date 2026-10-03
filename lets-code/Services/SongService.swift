@@ -1,54 +1,54 @@
-////
-////  SongService.swift
-////  lets-code
-////
-////  Created by Jesse Robinson Junior Simanjuntak on 03/10/26.
-////
 //
-//import Foundation
-//import AVFoundation
+//  SongService.swift
+//  lets-code
 //
-//enum SongServiceError: LocalizedError {
-//    case invalidResponse
+//  Created by Jesse Robinson Junior Simanjuntak on 03/10/26.
 //
-//    var errorDescription: String? {
-//        switch self {
-//        case .invalidResponse: return "The song returned an invalid response."
-//        }
-//    }
-//}
-//
-//final class SongService {
-//    func search(query: String) async throws -> [Song] {
-//        var components = URLComponents(string: "https://itunes.apple.com/search")!
-//        components.queryItems = [
-//            URLQueryItem(name: "term", value: query),
-//            URLQueryItem(name: "media", value: "music"),
-//            URLQueryItem(name: "entity", value: "song"),
-//            URLQueryItem(name: "limit", value: "25")
-//        ]
-//        let (data, response) = try await URLSession.shared.data(from: components.url!)
+
+import Foundation
+import AVFoundation
+
+enum SongServiceError: LocalizedError {
+    case invalidResponse
+
+    var errorDescription: String? {
+        switch self {
+        case .invalidResponse: return "The song returned an invalid response."
+        }
+    }
+}
+
+final class SongService {
+    func search(query: String) async throws -> [Song] {
+        var components = URLComponents(string: "https://itunes.apple.com/search")!
+        components.queryItems = [
+            URLQueryItem(name: "term", value: query),
+            URLQueryItem(name: "media", value: "music"),
+            URLQueryItem(name: "entity", value: "song"),
+            URLQueryItem(name: "limit", value: "25")
+        ]
+        let (data, response) = try await URLSession.shared.data(from: components.url!)
+        try validate(response)
+        return try JSONDecoder().decode(SongSearchResponse.self, from: data).results
+    }
+
+//    func episodes(for podcast: Podcast) async throws -> [PodcastEpisode] {
+//        guard let feedURL = podcast.feedUrl else { throw PodcastServiceError.missingFeed }
+//        let (data, response) = try await URLSession.shared.data(from: feedURL)
 //        try validate(response)
-//        return try JSONDecoder().decode(SongSearchResponse.self, from: data).results
+//        let episodes = try RSSParser.parse(data: data)
+//        guard !episodes.isEmpty else { throw PodcastServiceError.noEpisodes }
+//        return episodes
 //    }
-//
-////    func episodes(for podcast: Podcast) async throws -> [PodcastEpisode] {
-////        guard let feedURL = podcast.feedUrl else { throw PodcastServiceError.missingFeed }
-////        let (data, response) = try await URLSession.shared.data(from: feedURL)
-////        try validate(response)
-////        let episodes = try RSSParser.parse(data: data)
-////        guard !episodes.isEmpty else { throw PodcastServiceError.noEpisodes }
-////        return episodes
-////    }
-//
-//    private func validate(_ response: URLResponse) throws {
-//        guard let response = response as? HTTPURLResponse,
-//              200..<300 ~= response.statusCode else {
-//            throw SongServiceError.invalidResponse
-//        }
-//    }
-//}
-//
+
+    private func validate(_ response: URLResponse) throws {
+        guard let response = response as? HTTPURLResponse,
+              200..<300 ~= response.statusCode else {
+            throw SongServiceError.invalidResponse
+        }
+    }
+}
+
 //final class AudioPlayerService {
 //    static let shared = AudioPlayerService()
 //
